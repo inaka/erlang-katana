@@ -14,3 +14,4 @@ deps
 .erlang.mk.*
 hexer
 hexer.config
+/_build
