@@ -59,7 +59,11 @@ consult(_Config) ->
 -spec beam_to_string(config()) -> ok.
 beam_to_string(_Config) ->
     {error, beam_lib, _} = ktn_code:beam_to_string(bla),
-    {ok, _} = ktn_code:beam_to_string("../../ebin/ktn_code.beam"),
+    BaseDir = case code:lib_dir(katana) of
+                  {error, bad_name} -> "../..";
+                  File -> File
+              end,
+    {ok, _} = ktn_code:beam_to_string(BaseDir ++ "/ebin/ktn_code.beam"),
     ok.
 
 parse_tree(_Config) ->
