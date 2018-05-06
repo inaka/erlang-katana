@@ -4,7 +4,6 @@
   [ktn_binary,
    ktn_date,
    ktn_debug,
-   ktn_fsm,
    ktn_json,
    ktn_lists,
    ktn_maps,

@@ -34,7 +34,6 @@ Check out as well [katana-code](https://github.com/inaka/katana-code) and [katan
 
 * `ktn_date`: functions useful for handling dates and time values.
 * `ktn_debug`: functions useful for debugging.
-* `ktn_fsm`: a _nice_ wrapper on top of `gen_fsm`
 * `ktn_json`: functions useful for processing & creating JSON.
 * `ktn_maps`: functions useful for handling maps.
 * `ktn_numbers`: functions useful for processing numeric values.
@@ -139,12 +138,12 @@ all cases.
 A better way to structure the code would be preferable, one that makes the
 flow obvious and separates responsibilities into appropriate code segments.
 One way is a finite state machine. OTP even has a behaviour for exactly this
-purpose. However, gen_fsm does not exactly fit our needs:
-To begin with, gen_fsms run in their own process, which may not be what is
-needed. Second, logic flow is not immediately obvious because the fsm's
-state depends on the result of each state function. Finally, a gen_fsm
+purpose. However, gen_statem does not exactly fit our needs:
+To begin with, gen_statems run in their own process, which may not be what is
+needed. Second, logic flow is not immediately obvious because the FSM's
+state depends on the result of each state function. Finally, a gen_statem
 transitions only on receiving input, whereas we are looking for something
-that runs like normal code, "on its own". So, our fsm will be defined by
+that runs like normal code, "on its own". So, our FSM will be defined by
 something like a transition table, a single place you can look at and know
 how it executes. This specification will "drive" the recipe.
 
