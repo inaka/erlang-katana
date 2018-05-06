@@ -16,9 +16,6 @@ To sum up this is a grab bag of useful functions (ideally).
 
 # Contact Us
 
-For **questions** or **general comments** regarding the use of this library,
-please use our public [hipchat room](https://inaka.net/hipchat).
-
 If you find any **bugs** or have a **problem** while using this library, please
 [open an issue](https://github.com/inaka/erlang-katana/issues/new) in this repo
 (or a pull request :)).
