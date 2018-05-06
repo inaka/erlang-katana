@@ -68,9 +68,45 @@ command(_Config) ->
   YesFun = fun() ->
                case ktn_os:command("yes > /dev/null") of
                  {ExitStatus, _} when ExitStatus =/= 0 -> Self ! ok;
-                 _ -> Self ! error
+                 UnexpectedResult -> Self ! {error, UnexpectedResult}
                end
            end,
   erlang:spawn_link(YesFun),
   [] = os:cmd("pkill yes"),
-  ok  = receive X -> X after 1000 -> error end.
+  ok  = receive X -> X after 1000 -> timeout end,
+
+  ct:comment("Check result when port is closed"),
+  Yes2Fun =
+    fun() ->
+      process_flag(trap_exit, true),
+      try ktn_os:command("yes > /dev/null") of
+        UnexpectedResult -> Self ! {error, UnexpectedResult}
+      catch
+        exit:{error, _, _} -> Self ! ok
+      end
+    end,
+  FindPort =
+    fun(Proc) ->
+      fun() ->
+        {links, Links} = erlang:process_info(Proc, links),
+        [_] = [P || P <- Links, is_port(P)]
+      end
+    end,
+  Pid = erlang:spawn(Yes2Fun),
+  try
+    [Port] = ktn_task:wait_for_success(FindPort(Pid)),
+    port_close(Port),
+    ok  = receive X2 -> X2 after 1000 -> timeout end
+  after
+    exit(Pid, kill)
+  end,
+
+  ct:comment("Check result when port is killed"),
+  Pid2 = erlang:spawn(Yes2Fun),
+  try
+    [Port2] = ktn_task:wait_for_success(FindPort(Pid2)),
+    exit(Port2, kill),
+    ok  = receive X3 -> X3 after 1000 -> timeout end
+  after
+    exit(Pid2, kill)
+  end.
