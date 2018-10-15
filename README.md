@@ -42,6 +42,28 @@ Check out as well [katana-code](https://github.com/inaka/katana-code) and [katan
 * `ktn_task`: functions useful for managing asyncronous tasks.
 * `ktn_user_default`: useful functions for your erlang shell.
 
+### `ktn_date`
+
+This module contains functions to manipulate date and time values.
+
+#### `shift_days`
+
+With `shift_days(Datetime :: calendar:datetime(), N :: integer())` you can move the date expressed in `DateTime`, `N` days to the future or to the past.
+
+#### `shift_months`
+
+With `shift_months(Date :: calendar:date(), N :: integer())` you can move the date expressed in `Date`, `N` months to the future or to the past.
+
+Examples:
+```erlang
+$> ktn_date:shift_months({2018, 8, 15}, 2).
+{2018, 10, 15}
+$> ktn_date:shift_months({2018, 8, 15}, -2).
+{2018, 6,  15}
+$> ktn_date:shift_months({2018, 8, 15}, 6).
+{2019, 2,  15}
+```
+
 ### `ktn_user_default`
 
 This module contains functions that are nice to have in your user default
