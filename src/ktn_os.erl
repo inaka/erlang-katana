@@ -64,7 +64,7 @@ shell_cmd() -> "/bin/sh -s unix:cmd".
 %% DOWN message is after them all.
 flush_until_down(Port, MonRef) ->
   receive
-    {Port, {data, Bytes}} ->
+    {Port, {data, _Bytes}} ->
       flush_until_down(Port, MonRef);
     {'DOWN', MonRef, _, _, _} ->
       flush_exit(Port)
