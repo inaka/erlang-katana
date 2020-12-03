@@ -4,14 +4,8 @@
 -module(ktn_debug).
 
 -export(
-  [ ppst/0
-  , ppst/1
+  [ ppst/1
   ]).
-
--spec ppst() ->
-  [any()].
-ppst() ->
-  ppst(erlang:get_stacktrace()).
 
 -spec ppst([any()]) ->
   [any()].

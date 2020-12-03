@@ -90,8 +90,8 @@ elvis(Config) ->
             false -> filename:join(BaseDir, "elvis.config")
           end,
         [ fix_dirs(Group, Config)
-        || Group <- elvis_config:load_file(ConfigFile)];
-      ConfigFile -> elvis_config:load_file(ConfigFile)
+        || Group <- elvis_config:from_file(ConfigFile)];
+      ConfigFile -> elvis_config:from_file(ConfigFile)
     end,
 
   ct:comment("Elvis rocks!"),

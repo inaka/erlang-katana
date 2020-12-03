@@ -38,7 +38,7 @@ command(_Config) ->
   Result = Cwd ++ "\n",
   {0, Result} = ktn_os:command("pwd", Opts),
 
-  {1, _} = ktn_os:command("pwd; ls w4th3v3r", Opts),
+  {2, _} = ktn_os:command("pwd; ls w4th3v3r", Opts),
 
   Result2 = Result ++ "Hi\n",
   {0, Result2} = ktn_os:command("pwd; echo Hi", #{}),

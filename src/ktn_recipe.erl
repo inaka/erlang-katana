@@ -22,6 +22,9 @@
 -type transitions()            :: [step()].
 -type normalized_transitions() :: [transition()].
 
+-export_type([transitions/0]).
+-export_type([normalized_transitions/0]).
+
 -callback transitions() -> transitions().
 -callback process_result(term()) -> term().
 -callback process_error(term()) -> term().
