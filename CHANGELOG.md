@@ -1,13 +1,50 @@
-# Change Log
+# Changelog
+
+## [1.0.0](https://github.com/inaka/erlang-katana/tree/1.0.0) (2020-12-03)
+
+[Full Changelog](https://github.com/inaka/erlang-katana/compare/0.4.0...1.0.0)
+
+**Implemented enhancements:**
+
+- Update Elvis dependency [\#145](https://github.com/inaka/erlang-katana/issues/145)
+
+**Fixed bugs:**
+
+- test breaks [\#153](https://github.com/inaka/erlang-katana/issues/153)
+
+**Closed issues:**
+
+- Bump Version to 0.5.0 [\#157](https://github.com/inaka/erlang-katana/issues/157)
+- Upgrade dependencies [\#156](https://github.com/inaka/erlang-katana/issues/156)
+- Update elvis\_core dependency version to 0.3.9 [\#150](https://github.com/inaka/erlang-katana/issues/150)
+- Bump Version to 0.4.0 [\#147](https://github.com/inaka/erlang-katana/issues/147)
+- Bump version to 0.2.23 [\#131](https://github.com/inaka/erlang-katana/issues/131)
+- ktn\_code: nodes for implicit funs \(fun bla/0\) should have a different name than 'fun' [\#130](https://github.com/inaka/erlang-katana/issues/130)
+- Use aleppo 0.9.10 when published [\#129](https://github.com/inaka/erlang-katana/issues/129)
+- Really fix cyclic dependency… for REALZ [\#91](https://github.com/inaka/erlang-katana/issues/91)
+- Generate Abstract Syntax Forms from ktn\_code:tree\_node\(\)s [\#63](https://github.com/inaka/erlang-katana/issues/63)
+
+**Merged pull requests:**
+
+- Fix elvis [\#160](https://github.com/inaka/erlang-katana/pull/160) ([paulo-ferraz-oliveira](https://github.com/paulo-ferraz-oliveira))
+- Functionality to shift days and months [\#158](https://github.com/inaka/erlang-katana/pull/158) ([Euen](https://github.com/Euen))
+- Improvements from LambdaClass [\#155](https://github.com/inaka/erlang-katana/pull/155) ([elbrujohalcon](https://github.com/elbrujohalcon))
+- Remove ktn\_fsm now that gen\_fsm is deprecated [\#154](https://github.com/inaka/erlang-katana/pull/154) ([elbrujohalcon](https://github.com/elbrujohalcon))
+- Remove dead hipchat link [\#152](https://github.com/inaka/erlang-katana/pull/152) ([Euen](https://github.com/Euen))
+- \[Fix \#150\] Update elvis\_core dependency version to 0.3.9 [\#151](https://github.com/inaka/erlang-katana/pull/151) ([harenson](https://github.com/harenson))
+- Improve ktn\_os according to the latest changes to os:cmd [\#149](https://github.com/inaka/erlang-katana/pull/149) ([elbrujohalcon](https://github.com/elbrujohalcon))
 
 ## [0.4.0](https://github.com/inaka/erlang-katana/tree/0.4.0) (2017-03-17)
+
 [Full Changelog](https://github.com/inaka/erlang-katana/compare/0.3.1...0.4.0)
 
 **Merged pull requests:**
 
+- \[\#147\] bump version to 0.4.0 [\#148](https://github.com/inaka/erlang-katana/pull/148) ([Euen](https://github.com/Euen))
 - \[\#145\] update Elvis dependency and ktn\_random module [\#146](https://github.com/inaka/erlang-katana/pull/146) ([Euen](https://github.com/Euen))
 
 ## [0.3.1](https://github.com/inaka/erlang-katana/tree/0.3.1) (2016-08-05)
+
 [Full Changelog](https://github.com/inaka/erlang-katana/compare/0.3.0...0.3.1)
 
 **Closed issues:**
@@ -22,6 +59,7 @@
 - \[Close \#141\] remove parse transform [\#142](https://github.com/inaka/erlang-katana/pull/142) ([Euen](https://github.com/Euen))
 
 ## [0.3.0](https://github.com/inaka/erlang-katana/tree/0.3.0) (2016-08-04)
+
 [Full Changelog](https://github.com/inaka/erlang-katana/compare/0.2.23...0.3.0)
 
 **Closed issues:**
@@ -38,6 +76,7 @@
 - Add sibling projects [\#134](https://github.com/inaka/erlang-katana/pull/134) ([elbrujohalcon](https://github.com/elbrujohalcon))
 
 ## [0.2.23](https://github.com/inaka/erlang-katana/tree/0.2.23) (2016-02-24)
+
 [Full Changelog](https://github.com/inaka/erlang-katana/compare/0.2.22...0.2.23)
 
 **Closed issues:**
@@ -50,6 +89,7 @@
 - \[Closes \#121\] Moved ktn\_code and ktn\_meta\_SUITE to their own repos [\#132](https://github.com/inaka/erlang-katana/pull/132) ([igaray](https://github.com/igaray))
 
 ## [0.2.22](https://github.com/inaka/erlang-katana/tree/0.2.22) (2016-01-22)
+
 [Full Changelog](https://github.com/inaka/erlang-katana/compare/0.2.21...0.2.22)
 
 **Closed issues:**
@@ -62,6 +102,7 @@
 - \[Closes \#125\] Update aleppo [\#126](https://github.com/inaka/erlang-katana/pull/126) ([jfacorro](https://github.com/jfacorro))
 
 ## [0.2.21](https://github.com/inaka/erlang-katana/tree/0.2.21) (2016-01-21)
+
 [Full Changelog](https://github.com/inaka/erlang-katana/compare/0.2.20...0.2.21)
 
 **Closed issues:**
@@ -75,6 +116,7 @@
 - \[Closes \#112\] Upgrade aleppo [\#122](https://github.com/inaka/erlang-katana/pull/122) ([jfacorro](https://github.com/jfacorro))
 
 ## [0.2.20](https://github.com/inaka/erlang-katana/tree/0.2.20) (2016-01-19)
+
 [Full Changelog](https://github.com/inaka/erlang-katana/compare/0.2.19...0.2.20)
 
 **Implemented enhancements:**
@@ -98,6 +140,7 @@
 - \[Fix \#113\] modify IGNORE\_DEPS in makefile [\#115](https://github.com/inaka/erlang-katana/pull/115) ([Euen](https://github.com/Euen))
 
 ## [0.2.19](https://github.com/inaka/erlang-katana/tree/0.2.19) (2016-01-12)
+
 [Full Changelog](https://github.com/inaka/erlang-katana/compare/0.2.18...0.2.19)
 
 **Merged pull requests:**
@@ -105,9 +148,11 @@
 - Switch build tools to erlang.mk and republish to hex.pm [\#111](https://github.com/inaka/erlang-katana/pull/111) ([elbrujohalcon](https://github.com/elbrujohalcon))
 
 ## [0.2.18](https://github.com/inaka/erlang-katana/tree/0.2.18) (2015-12-31)
+
 [Full Changelog](https://github.com/inaka/erlang-katana/compare/0.2.17...0.2.18)
 
 ## [0.2.17](https://github.com/inaka/erlang-katana/tree/0.2.17) (2015-12-31)
+
 [Full Changelog](https://github.com/inaka/erlang-katana/compare/0.2.15...0.2.17)
 
 **Closed issues:**
@@ -123,6 +168,7 @@
 - \[\#97\] Updated for hexer hex package tool [\#105](https://github.com/inaka/erlang-katana/pull/105) ([davecaos](https://github.com/davecaos))
 
 ## [0.2.15](https://github.com/inaka/erlang-katana/tree/0.2.15) (2015-12-23)
+
 [Full Changelog](https://github.com/inaka/erlang-katana/compare/0.2.14...0.2.15)
 
 **Closed issues:**
@@ -140,6 +186,7 @@
 - For ktn\_meta\_SUITE, base\_dir should be configurable [\#95](https://github.com/inaka/erlang-katana/pull/95) ([elbrujohalcon](https://github.com/elbrujohalcon))
 
 ## [0.2.14](https://github.com/inaka/erlang-katana/tree/0.2.14) (2015-11-12)
+
 [Full Changelog](https://github.com/inaka/erlang-katana/compare/0.2.13...0.2.14)
 
 **Closed issues:**
@@ -159,6 +206,7 @@
 - Update from upstream [\#86](https://github.com/inaka/erlang-katana/pull/86) ([elbrujohalcon](https://github.com/elbrujohalcon))
 
 ## [0.2.13](https://github.com/inaka/erlang-katana/tree/0.2.13) (2015-09-07)
+
 [Full Changelog](https://github.com/inaka/erlang-katana/compare/0.2.12...0.2.13)
 
 **Closed issues:**
@@ -171,6 +219,7 @@
 - \[Closes \#82\] Handle user\_type [\#83](https://github.com/inaka/erlang-katana/pull/83) ([jfacorro](https://github.com/jfacorro))
 
 ## [0.2.12](https://github.com/inaka/erlang-katana/tree/0.2.12) (2015-09-07)
+
 [Full Changelog](https://github.com/inaka/erlang-katana/compare/0.2.11...0.2.12)
 
 **Closed issues:**
@@ -184,6 +233,7 @@
 - \[Closes \#78\] Update aleppo to 0.9.2 [\#79](https://github.com/inaka/erlang-katana/pull/79) ([jfacorro](https://github.com/jfacorro))
 
 ## [0.2.11](https://github.com/inaka/erlang-katana/tree/0.2.11) (2015-09-02)
+
 [Full Changelog](https://github.com/inaka/erlang-katana/compare/0.2.10...0.2.11)
 
 **Fixed bugs:**
@@ -202,6 +252,7 @@
 - \[Closes \#74\] ktn\_os:command/\[1,2\] [\#75](https://github.com/inaka/erlang-katana/pull/75) ([jfacorro](https://github.com/jfacorro))
 
 ## [0.2.10](https://github.com/inaka/erlang-katana/tree/0.2.10) (2015-08-27)
+
 [Full Changelog](https://github.com/inaka/erlang-katana/compare/0.2.9...0.2.10)
 
 **Closed issues:**
@@ -216,6 +267,7 @@
 - \[\#69\] tokens as an attribute of root node. [\#70](https://github.com/inaka/erlang-katana/pull/70) ([jfacorro](https://github.com/jfacorro))
 
 ## [0.2.9](https://github.com/inaka/erlang-katana/tree/0.2.9) (2015-08-21)
+
 [Full Changelog](https://github.com/inaka/erlang-katana/compare/0.2.8...0.2.9)
 
 **Merged pull requests:**
@@ -224,6 +276,7 @@
 - ktn\_random:pick/1 [\#67](https://github.com/inaka/erlang-katana/pull/67) ([elbrujohalcon](https://github.com/elbrujohalcon))
 
 ## [0.2.8](https://github.com/inaka/erlang-katana/tree/0.2.8) (2015-07-22)
+
 [Full Changelog](https://github.com/inaka/erlang-katana/compare/0.2.7...0.2.8)
 
 **Closed issues:**
@@ -237,6 +290,7 @@
 - Added an erlang config validation script [\#64](https://github.com/inaka/erlang-katana/pull/64) ([igaray](https://github.com/igaray))
 
 ## [0.2.7](https://github.com/inaka/erlang-katana/tree/0.2.7) (2015-06-19)
+
 [Full Changelog](https://github.com/inaka/erlang-katana/compare/0.2.6...0.2.7)
 
 **Closed issues:**
@@ -250,6 +304,7 @@
 - \[Closes \#59\] Handle 'fun\(...\) -\>' type expression [\#60](https://github.com/inaka/erlang-katana/pull/60) ([jfacorro](https://github.com/jfacorro))
 
 ## [0.2.6](https://github.com/inaka/erlang-katana/tree/0.2.6) (2015-06-11)
+
 [Full Changelog](https://github.com/inaka/erlang-katana/compare/0.2.5...0.2.6)
 
 **Implemented enhancements:**
@@ -272,6 +327,7 @@
 - Changelog update [\#43](https://github.com/inaka/erlang-katana/pull/43) ([jfacorro](https://github.com/jfacorro))
 
 ## [0.2.5](https://github.com/inaka/erlang-katana/tree/0.2.5) (2015-04-13)
+
 [Full Changelog](https://github.com/inaka/erlang-katana/compare/0.2.4...0.2.5)
 
 **Fixed bugs:**
@@ -286,6 +342,7 @@
 - \[\#35\] Update changelog. [\#38](https://github.com/inaka/erlang-katana/pull/38) ([jfacorro](https://github.com/jfacorro))
 
 ## [0.2.4](https://github.com/inaka/erlang-katana/tree/0.2.4) (2015-03-20)
+
 [Full Changelog](https://github.com/inaka/erlang-katana/compare/0.2.3...0.2.4)
 
 **Closed issues:**
@@ -300,6 +357,7 @@
 - \[Closes \#32\] Updated changelog. [\#34](https://github.com/inaka/erlang-katana/pull/34) ([jfacorro](https://github.com/jfacorro))
 
 ## [0.2.3](https://github.com/inaka/erlang-katana/tree/0.2.3) (2015-03-19)
+
 [Full Changelog](https://github.com/inaka/erlang-katana/compare/0.2.2...0.2.3)
 
 **Implemented enhancements:**
@@ -322,6 +380,7 @@
 - \[Closes \#28\] Beam to string. [\#29](https://github.com/inaka/erlang-katana/pull/29) ([jfacorro](https://github.com/jfacorro))
 
 ## [0.2.2](https://github.com/inaka/erlang-katana/tree/0.2.2) (2015-02-13)
+
 [Full Changelog](https://github.com/inaka/erlang-katana/compare/0.2.1...0.2.2)
 
 **Merged pull requests:**
@@ -329,6 +388,7 @@
 - \[\#26\] Fixed bug. [\#27](https://github.com/inaka/erlang-katana/pull/27) ([jfacorro](https://github.com/jfacorro))
 
 ## [0.2.1](https://github.com/inaka/erlang-katana/tree/0.2.1) (2015-02-13)
+
 [Full Changelog](https://github.com/inaka/erlang-katana/compare/0.2.0...0.2.1)
 
 **Fixed bugs:**
@@ -348,6 +408,7 @@
 - Update from upstream [\#18](https://github.com/inaka/erlang-katana/pull/18) ([elbrujohalcon](https://github.com/elbrujohalcon))
 
 ## [0.2.0](https://github.com/inaka/erlang-katana/tree/0.2.0) (2014-10-22)
+
 [Full Changelog](https://github.com/inaka/erlang-katana/compare/0.1.0...0.2.0)
 
 **Implemented enhancements:**
@@ -360,6 +421,9 @@
 - New stuff from @unbalancedparentheses [\#14](https://github.com/inaka/erlang-katana/pull/14) ([elbrujohalcon](https://github.com/elbrujohalcon))
 
 ## [0.1.0](https://github.com/inaka/erlang-katana/tree/0.1.0) (2014-09-01)
+
+[Full Changelog](https://github.com/inaka/erlang-katana/compare/b8314f2e1819823f8fbe0d531a28833354d19eb8...0.1.0)
+
 **Implemented enhancements:**
 
 - Rename modules from katana to ktn [\#3](https://github.com/inaka/erlang-katana/issues/3)
@@ -386,4 +450,4 @@
 
 
 
-\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
+\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*
