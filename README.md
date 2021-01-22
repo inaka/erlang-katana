@@ -1,6 +1,8 @@
 erlang katana
 ======
 
+![build](https://github.com/inaka/erlang-katana/workflows/build/badge.svg)
+
 ![samurai](https://raw.githubusercontent.com/unbalancedparentheses/katana/master/images/samurai.jpg)
 
 Even if you love Erlang as we do, from time to time you might ask yourself why
