@@ -73,7 +73,7 @@ command(_Config) ->
            end,
   erlang:spawn_link(YesFun),
   [] = os:cmd("pkill yes"),
-  ok  = receive X -> X after 1000 -> timeout end,
+  ok  = receive X -> X after 2500 -> timeout end,
 
   ct:comment("Check result when port is closed"),
   Yes2Fun =
