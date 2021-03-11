@@ -7,8 +7,8 @@
         ]).
 
 -export([
-         task/1,
-         task_error/1
+         wait_for/1,
+         wait_for_error/1
         ]).
 
 -define(EXCLUDED_FUNS,
@@ -69,16 +69,16 @@ fails_until(_X, _Curr) ->
 %% Test Cases
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
--spec task(config()) -> ok.
-task(_Config) ->
+-spec wait_for(config()) -> ok.
+wait_for(_Config) ->
     ok = ktn_task:wait_for(fun() -> ok end, ok, 1, 1),
-    ok = ktn_task:wait_for(fun() -> fails_until(10) end, ok, 1, 11),
+    ok = ktn_task:wait_for(fun() -> fails_until(10) end, ok, 0, 11),
     ok.
 
--spec task_error(config()) -> ok.
-task_error(_Config) ->
+-spec wait_for_error(config()) -> ok.
+wait_for_error(_Config) ->
     {error, {timeout, {fail}}} =
-              ktn_task:wait_for(fun() -> throw({fail}) end, 1, 1, 3),
+              ktn_task:wait_for(fun() -> throw({fail}) end, ok, 0, 3),
     {error, {timeout, {fail, {10, 15}}}} =
-              ktn_task:wait_for(fun() -> fails_until(15) end, ok, 1, 11),
+              ktn_task:wait_for(fun() -> fails_until(15) end, ok, 0, 11),
     ok.
