@@ -65,7 +65,7 @@ fail_until(X) ->
 -spec fail_until(integer(), integer(), reference()) -> no_return() | ok.
 fail_until(X, Curr, Ref) when X > Curr ->
     cnt_incr(Ref),
-    throw({fail, {Ref, Curr, X}});
+    throw({fail, {X, Curr, Ref}});
 fail_until(_X, _Curr, _Ref) ->
     ok.
 
@@ -82,6 +82,6 @@ wait_for(_Config) ->
 wait_for_error(_Config) ->
     {error, {timeout, {fail}}} =
               ktn_task:wait_for(fun() -> throw({fail}) end, ok, 0, 3),
-    {error, {timeout, {fail, {_Ref, 10, 15}}}} =
+    {error, {timeout, {fail, {15, 10, _Ref}}}} =
               ktn_task:wait_for(fail_until(15), ok, 0, 11),
     ok.
