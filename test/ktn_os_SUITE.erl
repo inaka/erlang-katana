@@ -38,7 +38,10 @@ command(_Config) ->
   Result = Cwd ++ "\n",
   {0, Result} = ktn_os:command("pwd", Opts),
 
-  {2, _} = ktn_os:command("pwd; ls w4th3v3r", Opts),
+  case ktn_os:command("pwd; ls w4th3v3r", Opts) of
+    {0, _} -> ct:fail({error});
+    _ -> ok
+  end,
 
   Result2 = Result ++ "Hi\n",
   {0, Result2} = ktn_os:command("pwd; echo Hi", #{}),
@@ -98,6 +101,7 @@ command(_Config) ->
     port_close(Port),
     ok  = receive X2 -> X2 after 1000 -> timeout end
   after
+    [] = os:cmd("pkill yes"),
     exit(Pid, kill)
   end,
 
@@ -108,5 +112,6 @@ command(_Config) ->
     exit(Port2, kill),
     ok  = receive X3 -> X3 after 1000 -> timeout end
   after
+    [] = os:cmd("pkill yes"),
     exit(Pid2, kill)
   end.
