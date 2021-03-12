@@ -43,7 +43,7 @@ end_per_testcase(_Case, Config) ->
 
 % Took this idea from
 % https://gist.github.com/garazdawi/17cdb5914b950f0acae21d9fcf7e8d41
--spec cnt_incr(reference()) -> ok.
+-spec cnt_incr(reference()) -> integer().
 cnt_incr(Ref) ->
     ets:update_counter(?MODULE, Ref, {2, 1}).
 
@@ -73,12 +73,22 @@ fail_until(_X, _Curr, _Ref) ->
 -spec wait_for(config()) -> ok.
 wait_for(_Config) ->
     ok = ktn_task:wait_for(fun() -> ok end, ok, 1, 1),
-    ok = ktn_task:wait_for(fail_until(10), ok, 0, 11).
+    ok = ktn_task:wait_for(fail_until(10), ok, 1, 11).
 
 -spec wait_for_error(config()) -> ok.
 wait_for_error(_Config) ->
     {error, {timeout, {fail}}} =
-              ktn_task:wait_for(fun() -> throw({fail}) end, ok, 0, 3),
+                ktn_task:wait_for(fun() ->
+                                    case rand:uniform(99999999) of
+                                        1 ->
+                                            ok;
+                                        _ ->
+                                            throw({fail})
+                                    end
+                                end,
+                                ok,
+                                1,
+                                3),
     {error, {timeout, {fail, {15, 10, _Ref}}}} =
-              ktn_task:wait_for(fail_until(15), ok, 0, 11),
+                ktn_task:wait_for(fail_until(15), ok, 1, 11),
     ok.
