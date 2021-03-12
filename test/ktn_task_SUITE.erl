@@ -20,7 +20,7 @@
         ]).
 
 -type config() :: [{atom(), term()}].
--type fail() :: {fail, {integer(), integer()}}.
+-type task(T) :: fun(() -> T).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Common test
@@ -33,8 +33,7 @@ all() ->
 
 -spec init_per_testcase(term(), config()) -> config().
 init_per_testcase(_Case, Config) ->
-    ets:new(?MODULE, [named_table, public]),
-    ets:insert(?MODULE, {counter, counters:new(1, [write_concurrency])}),
+    _Tid = ets:new(?MODULE, [named_table, public]),
     Config.
 
 -spec end_per_testcase(term(), config()) -> config().
@@ -44,25 +43,30 @@ end_per_testcase(_Case, Config) ->
 
 % Took this idea from
 % https://gist.github.com/garazdawi/17cdb5914b950f0acae21d9fcf7e8d41
--spec cnt_incr() -> ok.
-cnt_incr() ->
+-spec cnt_incr(reference()) -> ok.
+cnt_incr(Ref) ->
     counters:add(
-        ets:lookup_element(?MODULE, counter, 2), 1, 1).
+        ets:lookup_element(?MODULE, Ref, 2), 1, 1).
 
--spec cnt_read() -> integer().
-cnt_read() ->
+-spec cnt_read(reference()) -> integer().
+cnt_read(Ref) ->
     counters:get(
-        ets:lookup_element(?MODULE, counter, 2), 1).
+        ets:lookup_element(?MODULE, Ref, 2), 1).
 
--spec fails_until(integer()) -> fail() | ok.
-fails_until(X) ->
-    fails_until(X, cnt_read()).
+-spec fail_until(integer()) -> task(_).
+fail_until(X) ->
+    Ref = make_ref(),
+    ets:insert(?MODULE, {Ref, counters:new(1, [write_concurrency])}),
+    fun () ->
+        Curr = cnt_read(Ref),
+        fail_until(X, Curr, Ref)
+    end.
 
--spec fails_until(integer(), integer()) -> fail() | ok.
-fails_until(X, Curr) when X > Curr ->
-    cnt_incr(),
-    throw({fail, {Curr, X}});
-fails_until(_X, _Curr) ->
+-spec fail_until(integer(), integer(), reference()) -> no_return() | ok.
+fail_until(X, Curr, Ref) when X > Curr ->
+    cnt_incr(Ref),
+    throw({fail, {Ref, Curr, X}});
+fail_until(_X, _Curr, _Ref) ->
     ok.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -72,13 +76,12 @@ fails_until(_X, _Curr) ->
 -spec wait_for(config()) -> ok.
 wait_for(_Config) ->
     ok = ktn_task:wait_for(fun() -> ok end, ok, 1, 1),
-    ok = ktn_task:wait_for(fun() -> fails_until(10) end, ok, 0, 11),
-    ok.
+    ok = ktn_task:wait_for(fail_until(10), ok, 0, 11).
 
 -spec wait_for_error(config()) -> ok.
 wait_for_error(_Config) ->
     {error, {timeout, {fail}}} =
               ktn_task:wait_for(fun() -> throw({fail}) end, ok, 0, 3),
-    {error, {timeout, {fail, {10, 15}}}} =
-              ktn_task:wait_for(fun() -> fails_until(15) end, ok, 0, 11),
+    {error, {timeout, {fail, {_Ref, 10, 15}}}} =
+              ktn_task:wait_for(fail_until(15), ok, 0, 11),
     ok.
