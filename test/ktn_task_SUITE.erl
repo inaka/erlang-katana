@@ -45,21 +45,18 @@ end_per_testcase(_Case, Config) ->
 % https://gist.github.com/garazdawi/17cdb5914b950f0acae21d9fcf7e8d41
 -spec cnt_incr(reference()) -> ok.
 cnt_incr(Ref) ->
-    counters:add(
-        ets:lookup_element(?MODULE, Ref, 2), 1, 1).
+    ets:update_counter(?MODULE, Ref, {2, 1}).
 
 -spec cnt_read(reference()) -> integer().
 cnt_read(Ref) ->
-    counters:get(
-        ets:lookup_element(?MODULE, Ref, 2), 1).
+    ets:lookup_element(?MODULE, Ref, 2).
 
 -spec fail_until(integer()) -> task(_).
 fail_until(X) ->
     Ref = make_ref(),
-    ets:insert(?MODULE, {Ref, counters:new(1, [write_concurrency])}),
+    ets:insert(?MODULE, {Ref, 0}),
     fun () ->
-        Curr = cnt_read(Ref),
-        fail_until(X, Curr, Ref)
+        fail_until(X, cnt_read(Ref), Ref)
     end.
 
 -spec fail_until(integer(), integer(), reference()) -> no_return() | ok.
