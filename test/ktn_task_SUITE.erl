@@ -1,0 +1,94 @@
+-module(ktn_task_SUITE).
+
+-export([
+         all/0,
+         init_per_testcase/2,
+         end_per_testcase/2
+        ]).
+
+-export([
+         wait_for/1,
+         wait_for_error/1
+        ]).
+
+-define(EXCLUDED_FUNS,
+        [
+          module_info,
+          all,
+          init_per_case,
+          end_per_case
+        ]).
+
+-type config() :: [{atom(), term()}].
+-type task(T) :: fun(() -> T).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Common test
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+-spec all() -> [atom(), ...].
+all() ->
+    Exports = ?MODULE:module_info(exports),
+    [F || {F, 1} <- Exports, not lists:member(F, ?EXCLUDED_FUNS)].
+
+-spec init_per_testcase(term(), config()) -> config().
+init_per_testcase(_Case, Config) ->
+    _Tid = ets:new(?MODULE, [named_table, public]),
+    Config.
+
+-spec end_per_testcase(term(), config()) -> config().
+end_per_testcase(_Case, Config) ->
+    ets:delete(?MODULE),
+    Config.
+
+% Took this idea from
+% https://gist.github.com/garazdawi/17cdb5914b950f0acae21d9fcf7e8d41
+-spec cnt_incr(reference()) -> integer().
+cnt_incr(Ref) ->
+    ets:update_counter(?MODULE, Ref, {2, 1}).
+
+-spec cnt_read(reference()) -> integer().
+cnt_read(Ref) ->
+    ets:lookup_element(?MODULE, Ref, 2).
+
+-spec fail_until(integer()) -> task(_).
+fail_until(X) ->
+    Ref = make_ref(),
+    ets:insert(?MODULE, {Ref, 0}),
+    fun () ->
+        fail_until(X, cnt_read(Ref), Ref)
+    end.
+
+-spec fail_until(integer(), integer(), reference()) -> no_return() | ok.
+fail_until(X, Curr, Ref) when X > Curr ->
+    cnt_incr(Ref),
+    throw({fail, {X, Curr, Ref}});
+fail_until(_X, _Curr, _Ref) ->
+    ok.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Test Cases
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+-spec wait_for(config()) -> ok.
+wait_for(_Config) ->
+    ok = ktn_task:wait_for(fun() -> ok end, ok, 1, 1),
+    ok = ktn_task:wait_for(fail_until(10), ok, 1, 11).
+
+-spec wait_for_error(config()) -> ok.
+wait_for_error(_Config) ->
+    {error, {timeout, {fail}}} =
+                ktn_task:wait_for(fun() ->
+                                    case rand:uniform(99999999) of
+                                        1 ->
+                                            ok;
+                                        _ ->
+                                            throw({fail})
+                                    end
+                                end,
+                                ok,
+                                1,
+                                3),
+    {error, {timeout, {fail, {15, 10, _Ref}}}} =
+                ktn_task:wait_for(fail_until(15), ok, 1, 11),
+    ok.
